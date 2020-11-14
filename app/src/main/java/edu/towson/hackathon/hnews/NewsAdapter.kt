@@ -7,6 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.news_item_view.view.*
 
-// TODO - Part 2. Create the ViewHolder
+class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    val title: TextView = view.article_title
+    val url: TextView = view.article_url
+    val position: TextView = view.position
+}
 
 // TODO - Part 3. Create the Adapter
