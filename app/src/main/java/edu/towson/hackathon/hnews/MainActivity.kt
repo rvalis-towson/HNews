@@ -36,7 +36,10 @@ class MainActivity : AppCompatActivity(), IHNews {
     }
 
     override fun showArticle(pos: Int) {
-        // TODO - Part 7. View the article
+        val item = newsList[pos]
+        val uri = Uri.parse(item.url)
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        startActivity(intent)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
