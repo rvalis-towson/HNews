@@ -51,6 +51,28 @@ class MainActivity : AppCompatActivity(), IHNews {
     }
 
     private fun fetchNews() {
-        // TODO - Part 6. Call the api
+        scope.launch(Dispatchers.IO) {
+            when(val items = HackerNewsApi().fetchNews()) {
+                is Either.Right -> {
+                    newsList.clear()
+                    newsList.addAll(items.value)
+                    withContext(Dispatchers.Main) {
+                        recyclerView.adapter?.notifyDataSetChanged()
+                        showListAndHideProgress()
+                    }
+                }
+                is Either.Left -> {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@MainActivity, "Error fetching news", Toast.LENGTH_SHORT).show()
+                        showListAndHideProgress()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun showListAndHideProgress() {
+        progressBar.visibility = View.GONE
+        recyclerView.visibility = View.VISIBLE
     }
 }
