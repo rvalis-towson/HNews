@@ -43,7 +43,9 @@ class MainActivity : AppCompatActivity(), IHNews {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // TODO - Part 4. Setup the RecyclerView
+        val adapter = NewsAdapter(this)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
         fetchNews()
     }
