@@ -20,12 +20,24 @@ interface IHNews {
     fun showArticle(pos: Int)
 }
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), IHNews {
 
     // By default, run coroutines on the main thread
     private val scope = CoroutineScope(Dispatchers.Main)
 
-    // TODO - Part 1. Setup the list of news items
+    private val newsList = mutableListOf<NewsItem>()
+
+    override fun newsCount(): Int {
+        return newsList.size
+    }
+
+    override fun newsItem(pos: Int): NewsItem {
+        return newsList[pos]
+    }
+
+    override fun showArticle(pos: Int) {
+        // TODO - Part 7. View the article
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +51,4 @@ class MainActivity : AppCompatActivity() {
     private fun fetchNews() {
         // TODO - Part 6. Call the api
     }
-
-    // TODO - Part 7. View the article
 }
